@@ -26,6 +26,7 @@
         --accent-dark: #16a34a;
         --border: rgba(255,255,255,0.08);
         --shadow: 0 12px 30px rgba(0,0,0,0.28);
+        --warn: #f59e0b;
     }
 
     body {
@@ -311,6 +312,148 @@
         font-size: 18px;
     }
 
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+        align-items: stretch;
+    }
+
+    .plan-card {
+        background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        padding: 30px 26px;
+        position: relative;
+    }
+
+    .plan-card.best {
+        border: 1px solid rgba(34,197,94,0.45);
+        box-shadow: 0 14px 34px rgba(34,197,94,0.14);
+    }
+
+    .plan-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: var(--accent);
+        color: #08111f;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .plan-card h3 {
+        margin: 0 0 8px;
+        font-size: 30px;
+    }
+
+    .plan-price {
+        font-size: 46px;
+        font-weight: 700;
+        line-height: 1;
+        margin: 12px 0 10px;
+        color: white;
+    }
+
+    .plan-price span {
+        font-size: 18px;
+        font-weight: normal;
+        color: var(--muted);
+    }
+
+    .plan-desc {
+        color: var(--muted);
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
+
+    .plan-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px;
+    }
+
+    .plan-list li {
+        color: var(--muted);
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 16px;
+    }
+
+    .plan-list li:last-child {
+        border-bottom: none;
+    }
+
+    .plan-btn {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        padding: 16px 24px;
+        background: var(--accent);
+        color: #08111f;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.2s ease;
+        box-shadow: 0 8px 22px rgba(34,197,94,0.28);
+    }
+
+    .plan-btn:hover {
+        opacity: 0.95;
+        transform: translateY(-2px);
+    }
+
+    .pricing-note {
+        margin-top: 28px;
+        text-align: center;
+        color: var(--soft);
+        font-size: 17px;
+    }
+
+    .steps-box {
+        background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        padding: 34px 28px;
+        max-width: 920px;
+        margin: 34px auto 0;
+        box-shadow: var(--shadow);
+    }
+
+    .steps-box h3 {
+        margin: 0 0 14px;
+        text-align: center;
+        color: white;
+        font-size: 28px;
+    }
+
+    .steps-box ol {
+        margin: 0;
+        padding-left: 24px;
+        color: var(--muted);
+        font-size: 18px;
+    }
+
+    .steps-box li {
+        margin-bottom: 10px;
+    }
+
+    .steps-box strong {
+        color: white;
+    }
+
+    .warning-box {
+        margin-top: 20px;
+        text-align: center;
+        color: #fde68a;
+        font-size: 16px;
+    }
+
     .video-box {
         background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
         border-radius: 18px;
@@ -388,6 +531,10 @@
         .cta-section h2 {
             font-size: 36px;
         }
+
+        .plan-price {
+            font-size: 38px;
+        }
     }
 
     @media (max-width: 768px) {
@@ -418,7 +565,8 @@
         .workflow-section .lead,
         .demo-text p,
         .cta-section p,
-        .video-box p {
+        .video-box p,
+        .steps-box ol {
             font-size: 17px;
         }
 
@@ -427,7 +575,8 @@
         }
 
         .btn,
-        .btn-secondary {
+        .btn-secondary,
+        .plan-btn {
             width: 100%;
             text-align: center;
         }
@@ -445,8 +594,9 @@
                 <a href="#about">About</a>
                 <a href="#features">Features</a>
                 <a href="#workflow">Workflow</a>
+                <a href="#pricing">Pricing</a>
                 <a href="#video">Demo</a>
-                <a href="#download" class="nav-btn">Download</a>
+                <a href="#download" class="nav-btn">Start Free Trial</a>
             </div>
         </div>
     </div>
@@ -463,11 +613,11 @@
 
             <div class="hero-actions">
                 <a class="btn" href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe" target="_blank">
-                    Download Now
+                    Start Free Trial
                 </a>
 
-                <a class="btn-secondary" href="#workflow">
-                    Explore Workflow
+                <a class="btn-secondary" href="#pricing">
+                    Buy License
                 </a>
             </div>
 
@@ -654,47 +804,114 @@
             </div>
         </div>
     </div>
-   
-<!-- REPORTS SECTION (NEW 🔥) -->
-<div class="section">
-    <div class="container">
-        <h2>Export & Reporting</h2>
 
-        <div class="demo">
-            <img src="images/report-excel.png">
-            <div class="demo-text">
-                <h3>Excel Reports</h3>
-                <p>
-                    Export detailed formulation analysis to Excel for further processing,
-                    documentation, and daily operational use.
-                </p>
+    <div class="section">
+        <div class="container">
+            <h2>Export & Reporting</h2>
+
+            <div class="demo">
+                <img src="images/report-excel.png" alt="Excel Reports">
+                <div class="demo-text">
+                    <h3>Excel Reports</h3>
+                    <p>
+                        Export detailed formulation analysis to Excel for further processing,
+                        documentation, and daily operational use.
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <div class="demo">
-            <img src="images/report-pdf.png">
-            <div class="demo-text">
-                <h3>Professional PDF Reports</h3>
-                <p>
-                    Generate clean and professional PDF reports ready for printing,
-                    sharing with clients, and documentation.
-                </p>
+            <div class="demo">
+                <img src="images/report-pdf.png" alt="PDF Reports">
+                <div class="demo-text">
+                    <h3>Professional PDF Reports</h3>
+                    <p>
+                        Generate clean and professional PDF reports ready for printing,
+                        sharing with clients, and documentation.
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <div class="demo">
-            <img src="images/report-comparison.png">
-            <div class="demo-text">
-                <h3>Comparison Reports</h3>
-                <p>
-                    Compare multiple reports and analyze differences between formulations
-                    to make better decisions.
-                </p>
+            <div class="demo">
+                <img src="images/report-comparison.png" alt="Comparison Reports">
+                <div class="demo-text">
+                    <h3>Comparison Reports</h3>
+                    <p>
+                        Compare multiple reports and analyze differences between formulations
+                        to make better decisions.
+                    </p>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
+
+    <div class="section section-alt" id="pricing">
+        <div class="container">
+            <h2>Pricing</h2>
+            <p class="lead">
+                Start with a free trial, then choose the plan that fits your operation.
+                Monthly and yearly licenses are available with secure payment through PayPal.
+            </p>
+
+            <div class="pricing-grid">
+                <div class="plan-card">
+                    <h3>Monthly Plan</h3>
+                    <div class="plan-price">$19 <span>/ month</span></div>
+                    <p class="plan-desc">Flexible monthly access for nutritionists, consultants, and smaller operations.</p>
+
+                    <ul class="plan-list">
+                        <li>Full FeedBase desktop access</li>
+                        <li>Ingredient management</li>
+                        <li>Solver optimization</li>
+                        <li>Save and restore formulas</li>
+                        <li>Export PDF and Excel reports</li>
+                    </ul>
+
+                    <a class="plan-btn" href="https://www.paypal.com/ncp/payment/DN4T29YTEQ4N4" target="_blank">
+                        Buy Monthly
+                    </a>
+                </div>
+
+                <div class="plan-card best">
+                    <div class="plan-badge">Best Value</div>
+                    <h3>Yearly Plan</h3>
+                    <div class="plan-price">$149 <span>/ year</span></div>
+                    <p class="plan-desc">Best choice for farms and professionals who use FeedBase continuously throughout the year.</p>
+
+                    <ul class="plan-list">
+                        <li>Everything in Monthly</li>
+                        <li>Lower annual cost</li>
+                        <li>Continuous full access</li>
+                        <li>Professional reporting workflow</li>
+                        <li>Better long-term value</li>
+                    </ul>
+
+                    <a class="plan-btn" href="https://www.paypal.com/ncp/payment/2BVJQCCTWYHCC" target="_blank">
+                        Buy Yearly
+                    </a>
+                </div>
+            </div>
+
+            <p class="pricing-note">Secure payment available through PayPal, debit card, or credit card.</p>
+
+            <div class="steps-box">
+                <h3>How to Activate Your License</h3>
+                <ol>
+                    <li>Download and install <strong>FeedBase</strong></li>
+                    <li>Open the License window inside the program</li>
+                    <li>Copy your <strong>Hardware ID</strong></li>
+                    <li>Purchase a Monthly or Yearly license using one of the buttons above</li>
+                    <li>Send your <strong>Hardware ID</strong> and your <strong>payment email</strong> to <strong>info@feedbasepro.com</strong></li>
+                    <li>You will receive your activation key by email</li>
+                    <li>Paste the key into FeedBase and click <strong>Activate</strong></li>
+                </ol>
+
+                <div class="warning-box">
+                    Activation keys are generated for one device based on its Hardware ID.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="section" id="video">
         <div class="container">
@@ -719,9 +936,15 @@
                     with better speed, better visibility, and better cost control.
                 </p>
 
-                <a class="btn" href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe" target="_blank">
-                    Download FeedBase
-                </a>
+                <div class="hero-actions">
+                    <a class="btn" href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe" target="_blank">
+                        Start Free Trial
+                    </a>
+
+                    <a class="btn-secondary" href="#pricing">
+                        Buy License
+                    </a>
+                </div>
 
                 <p class="download-note">If Windows shows a warning, click “More info” then “Run anyway”.</p>
             </div>
