@@ -1,596 +1,657 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1CQMPWBEYW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1CQMPWBEYW');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FeedBase</title>
-
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    :root {
-        --bg: #081225;
-        --bg2: #0f172a;
-        --card: #1e293b;
-        --card2: #23324a;
-        --text: #f8fafc;
-        --muted: #cbd5e1;
-        --soft: #94a3b8;
-        --accent: #22c55e;
-        --accent-dark: #16a34a;
-        --border: rgba(255,255,255,0.08);
-        --shadow: 0 12px 30px rgba(0,0,0,0.28);
-        --warn: #f59e0b;
-    }
-
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(180deg, #081225 0%, #0b1730 40%, #081225 100%);
-        color: var(--text);
-        line-height: 1.65;
-    }
-
-    .container {
-        width: 90%;
-        max-width: 1180px;
-        margin: auto;
-    }
-
-    .nav {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        backdrop-filter: blur(8px);
-        background: rgba(8, 18, 37, 0.78);
-        border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 16px 0;
-    }
-
-    .brand {
-        font-size: 28px;
-        font-weight: 700;
-        color: white;
-        text-decoration: none;
-        letter-spacing: 0.3px;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 22px;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .nav-links a {
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 15px;
-        transition: 0.2s ease;
-    }
-
-    .nav-links a:hover {
-        color: white;
-    }
-
-    .nav-btn {
-        background: var(--accent);
-        color: #08111f !important;
-        padding: 10px 18px;
-        border-radius: 999px;
-        font-weight: bold;
-    }
-
-    .hero {
-        text-align: center;
-        padding: 95px 20px 70px;
-    }
-
-    .hero h1 {
-        font-size: 68px;
-        margin: 0 0 14px;
-        line-height: 1.05;
-    }
-
-    .hero .subtitle {
-        font-size: 26px;
-        color: #e2e8f0;
-        margin-bottom: 12px;
-    }
-
-    .hero .highlight {
-        margin: 8px auto 0;
-        color: var(--accent);
-        font-weight: bold;
-        font-size: 22px;
-        max-width: 900px;
-    }
-
-    .hero .hero-text {
-        max-width: 850px;
-        margin: 22px auto 0;
-        color: var(--muted);
-        font-size: 19px;
-    }
-
-    .hero-actions {
-        margin-top: 28px;
-        display: flex;
-        justify-content: center;
-        gap: 14px;
-        flex-wrap: wrap;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 18px 40px;
-        background: var(--accent);
-        color: #08111f;
-        text-decoration: none;
-        border-radius: 12px;
-        font-weight: bold;
-        font-size: 20px;
-        transition: 0.2s ease;
-        box-shadow: 0 8px 22px rgba(34,197,94,0.28);
-    }
-
-    .btn:hover {
-        opacity: 0.95;
-        transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-        display: inline-block;
-        padding: 18px 30px;
-        background: transparent;
-        color: white;
-        text-decoration: none;
-        border-radius: 12px;
-        font-weight: bold;
-        font-size: 18px;
-        border: 1px solid var(--border);
-        transition: 0.2s ease;
-    }
-
-    .btn-secondary:hover {
-        background: rgba(255,255,255,0.04);
-        transform: translateY(-2px);
-    }
-
-    .download-note {
-        margin-top: 14px;
-        color: var(--soft);
-        font-size: 17px;
-    }
-
-    .hero-stat-row {
-        margin-top: 36px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(180px, 1fr));
-        gap: 18px;
-        max-width: 860px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .stat-card {
-        background: rgba(30,41,59,0.7);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 20px 16px;
-        box-shadow: var(--shadow);
-    }
-
-    .stat-card h3 {
-        margin: 0;
-        color: var(--accent);
-        font-size: 30px;
-    }
-
-    .stat-card p {
-        margin: 8px 0 0;
-        color: var(--muted);
-        font-size: 15px;
-    }
-
-    .section {
-        padding: 55px 20px;
-    }
-
-    .section-alt {
-        background: rgba(255,255,255,0.015);
-        border-top: 1px solid rgba(255,255,255,0.03);
-        border-bottom: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .section h2 {
-        text-align: center;
-        margin: 0 0 18px;
-        font-size: 44px;
-    }
-
-    .section p.lead {
-        text-align: center;
-        max-width: 920px;
-        margin: 0 auto 32px;
-        color: var(--muted);
-        font-size: 19px;
-    }
-
-    .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 24px;
-        margin-top: 32px;
-    }
-
-    .card {
-        background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
-        padding: 26px;
-        border-radius: 18px;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-        transition: 0.2s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-4px);
-    }
-
-    .card h3 {
-        margin: 0 0 12px;
-        color: #ffffff;
-        font-size: 24px;
-    }
-
-    .card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 17px;
-    }
-
-    .workflow-section {
-        padding: 60px 20px 70px;
-    }
-
-    .workflow-section h2 {
-        text-align: center;
-        font-size: 50px;
-        margin: 0 0 16px;
-    }
-
-    .workflow-section .lead {
-        text-align: center;
-        max-width: 980px;
-        margin: 0 auto 38px;
-        color: var(--muted);
-        font-size: 19px;
-    }
-
-    .demo {
-        margin-top: 56px;
-        text-align: center;
-    }
-
-    .demo img {
-        width: 100%;
-        max-width: 1000px;
-        border-radius: 18px;
-        margin-bottom: 22px;
-        border: 2px solid #1f2937;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        background: #0b1324;
-    }
-
-    .demo-text {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    .demo-text h3 {
-        margin: 0 0 10px;
-        color: var(--accent);
-        font-size: 30px;
-    }
-
-    .demo-text p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 18px;
-    }
-
-    .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px;
-        margin-top: 32px;
-        align-items: stretch;
-    }
-
-    .plan-card {
-        background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
-        border: 1px solid var(--border);
-        border-radius: 22px;
-        box-shadow: var(--shadow);
-        padding: 30px 26px;
-        position: relative;
-    }
-
-    .plan-card.best {
-        border: 1px solid rgba(34,197,94,0.45);
-        box-shadow: 0 14px 34px rgba(34,197,94,0.14);
-    }
-
-    .plan-badge {
-        position: absolute;
-        top: -12px;
-        right: 20px;
-        background: var(--accent);
-        color: #08111f;
-        padding: 6px 12px;
-        border-radius: 999px;
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    .plan-card h3 {
-        margin: 0 0 8px;
-        font-size: 30px;
-    }
-
-    .plan-price {
-        font-size: 46px;
-        font-weight: 700;
-        line-height: 1;
-        margin: 12px 0 10px;
-        color: white;
-    }
-
-    .plan-price span {
-        font-size: 18px;
-        font-weight: normal;
-        color: var(--muted);
-    }
-
-    .plan-desc {
-        color: var(--muted);
-        font-size: 16px;
-        margin-bottom: 18px;
-    }
-
-    .plan-list {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 24px;
-    }
-
-    .plan-list li {
-        color: var(--muted);
-        padding: 8px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-        font-size: 16px;
-    }
-
-    .plan-list li:last-child {
-        border-bottom: none;
-    }
-
-    .plan-btn {
-        display: inline-block;
-        width: 100%;
-        text-align: center;
-        padding: 16px 24px;
-        background: var(--accent);
-        color: #08111f;
-        text-decoration: none;
-        border-radius: 12px;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.2s ease;
-        box-shadow: 0 8px 22px rgba(34,197,94,0.28);
-    }
-
-    .plan-btn:hover {
-        opacity: 0.95;
-        transform: translateY(-2px);
-    }
-
-    .pricing-note {
-        margin-top: 28px;
-        text-align: center;
-        color: var(--soft);
-        font-size: 17px;
-    }
-
-    .steps-box {
-        background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
-        border-radius: 18px;
-        border: 1px solid var(--border);
-        padding: 34px 28px;
-        max-width: 920px;
-        margin: 34px auto 0;
-        box-shadow: var(--shadow);
-    }
-
-    .steps-box h3 {
-        margin: 0 0 14px;
-        text-align: center;
-        color: white;
-        font-size: 28px;
-    }
-
-    .steps-box ol {
-        margin: 0;
-        padding-left: 24px;
-        color: var(--muted);
-        font-size: 18px;
-    }
-
-    .steps-box li {
-        margin-bottom: 10px;
-    }
-
-    .steps-box strong {
-        color: white;
-    }
-
-    .warning-box {
-        margin-top: 20px;
-        text-align: center;
-        color: #fde68a;
-        font-size: 16px;
-    }
-
-    .video-box {
-        background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
-        border-radius: 18px;
-        border: 1px solid var(--border);
-        padding: 42px 24px;
-        max-width: 920px;
-        margin: 28px auto 0;
-        box-shadow: var(--shadow);
-        text-align: center;
-    }
-
-    .video-box p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 20px;
-    }
-
-    .cta-section {
-        text-align: center;
-        padding: 70px 20px 80px;
-    }
-
-    .cta-box {
-        max-width: 980px;
-        margin: auto;
-        background: linear-gradient(180deg, rgba(30,41,59,0.75), rgba(35,50,74,0.75));
-        border: 1px solid var(--border);
-        border-radius: 24px;
-        box-shadow: var(--shadow);
-        padding: 55px 28px;
-    }
-
-    .cta-section h2 {
-        font-size: 52px;
-        margin: 0 0 16px;
-    }
-
-    .cta-section p {
-        max-width: 760px;
-        margin: 0 auto 12px;
-        color: var(--muted);
-        font-size: 21px;
-    }
-
-    .footer {
-        text-align: center;
-        padding: 26px 20px 40px;
-        color: var(--soft);
-        font-size: 15px;
-    }
-
-    .footer p {
-        margin: 8px 0;
-    }
-
-    @media (max-width: 900px) {
-        .hero h1 {
-            font-size: 50px;
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CQMPWBEYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CQMPWBEYW');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedBase</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
         }
 
-        .hero .subtitle {
-            font-size: 22px;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .hero .highlight {
-            font-size: 20px;
+        :root {
+            --bg: #081225;
+            --bg2: #0f172a;
+            --card: #1e293b;
+            --card2: #23324a;
+            --text: #f8fafc;
+            --muted: #cbd5e1;
+            --soft: #94a3b8;
+            --accent: #22c55e;
+            --accent-dark: #16a34a;
+            --border: rgba(255,255,255,0.08);
+            --shadow: 0 12px 30px rgba(0,0,0,0.28);
+            --warn: #f59e0b;
         }
 
-        .hero-stat-row {
-            grid-template-columns: 1fr;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #081225 0%, #0b1730 40%, #081225 100%);
+            color: var(--text);
+            line-height: 1.65;
         }
 
-        .workflow-section h2,
-        .section h2,
-        .cta-section h2 {
-            font-size: 36px;
+        .container {
+            width: 90%;
+            max-width: 1180px;
+            margin: auto;
         }
 
-        .plan-price {
-            font-size: 38px;
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            background: rgba(8, 18, 37, 0.78);
+            border-bottom: 1px solid var(--border);
         }
-    }
 
-    @media (max-width: 768px) {
         .nav-inner {
-            flex-direction: column;
-            align-items: flex-start;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 16px 0;
+        }
+
+        .brand {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 0.3px;
         }
 
         .nav-links {
-            gap: 14px;
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-btn {
+            background: var(--accent);
+            color: #08111f !important;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: bold;
         }
 
         .hero {
-            padding-top: 72px;
+            text-align: center;
+            padding: 95px 20px 70px;
         }
 
         .hero h1 {
-            font-size: 42px;
+            font-size: 68px;
+            margin: 0 0 14px;
+            line-height: 1.05;
         }
 
         .hero .subtitle {
-            font-size: 18px;
+            font-size: 26px;
+            color: #e2e8f0;
+            margin-bottom: 12px;
         }
 
-        .hero .highlight,
-        .hero .hero-text,
-        .section p.lead,
-        .workflow-section .lead,
-        .demo-text p,
-        .cta-section p,
-        .video-box p,
-        .steps-box ol {
+        .hero .highlight {
+            margin: 8px auto 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 22px;
+            max-width: 900px;
+        }
+
+        .hero .hero-text {
+            max-width: 850px;
+            margin: 22px auto 0;
+            color: var(--muted);
+            font-size: 19px;
+        }
+
+        .hero-actions {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--accent);
+            color: #08111f;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.2s ease;
+            box-shadow: 0 8px 22px rgba(34,197,94,0.28);
+        }
+
+        .btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 18px 30px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+            border: 1px solid var(--border);
+            transition: 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.04);
+            transform: translateY(-2px);
+        }
+
+        .download-note {
+            margin-top: 14px;
+            color: var(--soft);
             font-size: 17px;
         }
 
-        .demo-text h3 {
+        .hero-stat-row {
+            margin-top: 36px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px, 1fr));
+            gap: 18px;
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            background: rgba(30,41,59,0.7);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            color: var(--accent);
+            font-size: 30px;
+        }
+
+        .stat-card p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .section {
+            padding: 55px 20px;
+        }
+
+        .section-alt {
+            background: rgba(255,255,255,0.015);
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .section h2 {
+            text-align: center;
+            margin: 0 0 18px;
+            font-size: 44px;
+        }
+
+        .section p.lead {
+            text-align: center;
+            max-width: 920px;
+            margin: 0 auto 32px;
+            color: var(--muted);
+            font-size: 19px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
+            padding: 26px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            margin: 0 0 12px;
+            color: #ffffff;
             font-size: 24px;
         }
 
-        .btn,
-        .btn-secondary,
-        .plan-btn {
-            width: 100%;
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .workflow-section {
+            padding: 60px 20px 70px;
+        }
+
+        .workflow-section h2 {
+            text-align: center;
+            font-size: 50px;
+            margin: 0 0 16px;
+        }
+
+        .workflow-section .lead {
+            text-align: center;
+            max-width: 980px;
+            margin: 0 auto 38px;
+            color: var(--muted);
+            font-size: 19px;
+        }
+
+        .demo {
+            margin-top: 56px;
             text-align: center;
         }
-    }
-</style>
+
+        .demo img {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 18px;
+            margin-bottom: 22px;
+            border: 2px solid #1f2937;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #0b1324;
+        }
+
+        .demo-text {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .demo-text h3 {
+            margin: 0 0 10px;
+            color: var(--accent);
+            font-size: 30px;
+        }
+
+        .demo-text p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+            align-items: stretch;
+        }
+
+        .plan-card {
+            background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            padding: 30px 26px;
+            position: relative;
+        }
+
+        .plan-card.best {
+            border: 1px solid rgba(34,197,94,0.45);
+            box-shadow: 0 14px 34px rgba(34,197,94,0.14);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--accent);
+            color: #08111f;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .plan-card h3 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        .plan-price {
+            font-size: 46px;
+            font-weight: 700;
+            line-height: 1;
+            margin: 12px 0 10px;
+            color: white;
+        }
+
+        .plan-price span {
+            font-size: 18px;
+            font-weight: normal;
+            color: var(--muted);
+        }
+
+        .plan-desc {
+            color: var(--muted);
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .plan-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+        }
+
+        .plan-list li {
+            color: var(--muted);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 16px;
+        }
+
+        .plan-list li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 16px 24px;
+            background: var(--accent);
+            color: #08111f;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.2s ease;
+            box-shadow: 0 8px 22px rgba(34,197,94,0.28);
+        }
+
+        .plan-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        .pricing-note {
+            margin-top: 28px;
+            text-align: center;
+            color: var(--soft);
+            font-size: 17px;
+        }
+
+        .steps-box {
+            background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            padding: 34px 28px;
+            max-width: 920px;
+            margin: 34px auto 0;
+            box-shadow: var(--shadow);
+        }
+
+        .steps-box h3 {
+            margin: 0 0 14px;
+            text-align: center;
+            color: white;
+            font-size: 28px;
+        }
+
+        .steps-box ol {
+            margin: 0;
+            padding-left: 24px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .steps-box li {
+            margin-bottom: 10px;
+        }
+
+        .steps-box strong {
+            color: white;
+        }
+
+        .email-help {
+            text-align: center;
+            margin-top: 18px;
+            color: #9ca3af;
+            font-size: 17px;
+        }
+
+        .email-action {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .email-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #22c55e;
+            color: #08111f;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 6px 16px rgba(34,197,94,0.3);
+            transition: 0.2s ease;
+        }
+
+        .email-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        .warning-box {
+            margin-top: 20px;
+            text-align: center;
+            color: #fde68a;
+            font-size: 16px;
+        }
+
+        .video-box {
+            background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            padding: 20px;
+            max-width: 920px;
+            margin: 28px auto 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .video-box iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border: 0;
+            border-radius: 14px;
+        }
+
+        .video-action {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .video-download-btn {
+            background: #0B8461;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.2s ease;
+        }
+
+        .video-download-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 70px 20px 80px;
+        }
+
+        .cta-box {
+            max-width: 980px;
+            margin: auto;
+            background: linear-gradient(180deg, rgba(30,41,59,0.75), rgba(35,50,74,0.75));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 55px 28px;
+        }
+
+        .cta-section h2 {
+            font-size: 52px;
+            margin: 0 0 16px;
+        }
+
+        .cta-section p {
+            max-width: 760px;
+            margin: 0 auto 12px;
+            color: var(--muted);
+            font-size: 21px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 26px 20px 40px;
+            color: var(--soft);
+            font-size: 15px;
+        }
+
+        .footer p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .hero .subtitle {
+                font-size: 22px;
+            }
+
+            .hero .highlight {
+                font-size: 20px;
+            }
+
+            .hero-stat-row {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-section h2,
+            .section h2,
+            .cta-section h2 {
+                font-size: 36px;
+            }
+
+            .plan-price {
+                font-size: 38px;
+            }
+
+            .video-box iframe {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .hero {
+                padding-top: 72px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            .hero .highlight,
+            .hero .hero-text,
+            .section p.lead,
+            .workflow-section .lead,
+            .demo-text p,
+            .cta-section p,
+            .steps-box ol,
+            .email-help {
+                font-size: 17px;
+            }
+
+            .demo-text h3 {
+                font-size: 24px;
+            }
+
+            .btn,
+            .btn-secondary,
+            .plan-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .video-box iframe {
+                height: 260px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -621,7 +682,10 @@
             </p>
 
             <div class="hero-actions">
-                <a class="btn" href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe" target="_blank">
+                <a class="btn"
+                   href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe"
+                   target="_blank"
+                   onclick="gtag('event','trial_download_click',{'event_category':'engagement','event_label':'Start Free Trial - Hero'});">
                     Start Free Trial
                 </a>
 
@@ -850,7 +914,6 @@
                     </p>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -863,6 +926,7 @@
             </p>
 
             <div class="pricing-grid">
+
                 <div class="plan-card">
                     <h3>Monthly Plan</h3>
                     <div class="plan-price">$19 <span>/ month</span></div>
@@ -877,11 +941,13 @@
                     </ul>
 
                     <a class="plan-btn"
-                           href="https://www.paypal.com/ncp/payment/DN4T29YTEQ4N4"
-                           target="_blank"
-                           onclick="gtag('event','purchase_click',{'event_category':'engagement','event_label':'Buy Monthly License'});">
-                           Buy Monthly
-                        </a>
+                       href="https://www.paypal.com/ncp/payment/DN4T29YTEQ4N4"
+                       target="_blank"
+                       onclick="gtag('event','purchase_click',{'event_category':'engagement','event_label':'Buy Monthly License'});">
+                        Buy Monthly
+                    </a>
+                </div>
+
                 <div class="plan-card best">
                     <div class="plan-badge">Best Value</div>
                     <h3>Yearly Plan</h3>
@@ -897,12 +963,13 @@
                     </ul>
 
                     <a class="plan-btn"
-                        href="https://www.paypal.com/ncp/payment/2BVJQCCTWYHCC"
-                        target="_blank"
-                        onclick="gtag('event','purchase_click',{'event_category':'engagement','event_label':'Buy Yearly License'});">
+                       href="https://www.paypal.com/ncp/payment/2BVJQCCTWYHCC"
+                       target="_blank"
+                       onclick="gtag('event','purchase_click',{'event_category':'engagement','event_label':'Buy Yearly License'});">
                         Buy Yearly
-                     </a>
+                    </a>
                 </div>
+
             </div>
 
             <p class="pricing-note">Secure payment available through PayPal, debit card, or credit card.</p>
@@ -918,26 +985,19 @@
                     <li>You will receive your activation key by email</li>
                     <li>Paste the key into FeedBase and click <strong>Activate</strong></li>
                 </ol>
-                  <div style="text-align:center; margin-top:20px;">
-                  <p style="text-align:center; margin-top:15px; color:#9ca3af;">
-                     After payment, send your Hardware ID to receive your activation key instantly.
-                     </p>
-                      <a href="mailto:info@feedbasepro.com?subject=FeedBase License Request&body=Hello,%0D%0AI have purchased FeedBase.%0D%0AHere is my Hardware ID:%0D%0A"
-                         style="
-                          display:inline-block;
-                          padding:14px 28px;
-                          background:#22c55e;
-                          color:#08111f;
-                          text-decoration:none;
-                          border-radius:10px;
-                          font-weight:bold;
-                          font-size:18px;
-                          box-shadow:0 6px 16px rgba(34,197,94,0.3);
-                         ">
-                          Send Hardware ID & Payment Proof
-                      </a>
-                  
-                  </div>
+
+                <p class="email-help">
+                    After payment, send your Hardware ID to receive your activation key instantly.
+                </p>
+
+                <div class="email-action">
+                    <a class="email-btn"
+                       href="mailto:info@feedbasepro.com?subject=FeedBase License Request&body=Hello,%0D%0AI have purchased FeedBase.%0D%0AHere is my Hardware ID:%0D%0A"
+                       onclick="gtag('event','email_click',{'event_category':'engagement','event_label':'Send Hardware ID Email'});">
+                        Send Hardware ID & Payment Proof
+                    </a>
+                </div>
+
                 <div class="warning-box">
                     Activation keys are generated for one device based on its Hardware ID.
                 </div>
@@ -946,37 +1006,30 @@
     </div>
 
     <div class="section" id="video">
-    <div class="container">
-        <h2>Demo Video</h2>
+        <div class="container">
+            <h2>Demo Video</h2>
+            <p class="lead">
+                Watch how FeedBase works — from selecting ingredients to generating an optimized feed formula in seconds.
+            </p>
 
-        <p class="lead">
-            Watch how FeedBase works — from selecting ingredients to generating an optimized feed formula in seconds.
-        </p>
+            <div class="video-box">
+                <iframe
+                    src="https://www.youtube.com/embed/Ew0Z3jyZBZM"
+                    title="FeedBase Demo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
 
-        <div class="video-box" style="max-width:800px;margin:auto;">
-            <iframe width="100%" height="450"
-                src="https://www.youtube.com/embed/Ew0Z3jyZBZM"
-                title="FeedBase Demo"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
-
-        <div style="text-align:center; margin-top:20px;">
-            <a href="#download" style="
-                background:#0B8461;
-                color:white;
-                padding:12px 25px;
-                text-decoration:none;
-                border-radius:8px;
-                font-weight:bold;
-                display:inline-block;">
-                Download FeedBase
-            </a>
+            <div class="video-action">
+                <a class="video-download-btn"
+                   href="#download"
+                   onclick="gtag('event','download_section_click',{'event_category':'engagement','event_label':'Download FeedBase From Video Section'});">
+                    Download FeedBase
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
     <div class="cta-section" id="download">
         <div class="container">
@@ -988,7 +1041,10 @@
                 </p>
 
                 <div class="hero-actions">
-                    <a class="btn" href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe" target="_blank">
+                    <a class="btn"
+                       href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe"
+                       target="_blank"
+                       onclick="gtag('event','trial_download_click',{'event_category':'engagement','event_label':'Start Free Trial - Bottom'});">
                         Start Free Trial
                     </a>
 
