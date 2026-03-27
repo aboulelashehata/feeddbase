@@ -685,11 +685,21 @@
                 <a class="btn"
                    href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe"
                    target="_blank"
-                   onclick="gtag('event','trial_download_click',{'event_category':'engagement','event_label':'Start Free Trial - Hero'});">
+                   onclick="gtag('event','trial_download_click',{
+                       event_category:'engagement',
+                       event_label:'Start Free Trial - Hero',
+                       file_name:'FeedBase_Setup.exe',
+                       version:'v1.0'
+                   });">
                     Start Free Trial
                 </a>
 
-                <a class="btn-secondary" href="#pricing">
+                <a class="btn-secondary"
+                   href="#pricing"
+                   onclick="gtag('event','go_to_pricing_click',{
+                       event_category:'navigation',
+                       event_label:'Buy License - Hero'
+                   });">
                     Buy License
                 </a>
             </div>
@@ -943,7 +953,13 @@
                     <a class="plan-btn"
                        href="https://www.paypal.com/ncp/payment/DN4T29YTEQ4N4"
                        target="_blank"
-                       onclick="gtag('event','purchase_click',{'event_category':'engagement','event_label':'Buy Monthly License'});">
+                       onclick="gtag('event','purchase_click',{
+                           event_category:'engagement',
+                           event_label:'Buy Monthly License',
+                           plan:'monthly',
+                           value:19,
+                           currency:'USD'
+                       });">
                         Buy Monthly
                     </a>
                 </div>
@@ -965,7 +981,13 @@
                     <a class="plan-btn"
                        href="https://www.paypal.com/ncp/payment/2BVJQCCTWYHCC"
                        target="_blank"
-                       onclick="gtag('event','purchase_click',{'event_category':'engagement','event_label':'Buy Yearly License'});">
+                       onclick="gtag('event','purchase_click',{
+                           event_category:'engagement',
+                           event_label:'Buy Yearly License',
+                           plan:'yearly',
+                           value:149,
+                           currency:'USD'
+                       });">
                         Buy Yearly
                     </a>
                 </div>
@@ -993,7 +1015,10 @@
                 <div class="email-action">
                     <a class="email-btn"
                        href="mailto:info@feedbasepro.com?subject=FeedBase License Request&body=Hello,%0D%0AI have purchased FeedBase.%0D%0AHere is my Hardware ID:%0D%0A"
-                       onclick="gtag('event','email_click',{'event_category':'engagement','event_label':'Send Hardware ID Email'});">
+                       onclick="gtag('event','email_click',{
+                           event_category:'engagement',
+                           event_label:'Send Hardware ID Email'
+                       });">
                         Send Hardware ID & Payment Proof
                     </a>
                 </div>
@@ -1024,7 +1049,10 @@
             <div class="video-action">
                 <a class="video-download-btn"
                    href="#download"
-                   onclick="gtag('event','download_section_click',{'event_category':'engagement','event_label':'Download FeedBase From Video Section'});">
+                   onclick="gtag('event','download_section_click',{
+                       event_category:'engagement',
+                       event_label:'Download FeedBase From Video Section'
+                   });">
                     Download FeedBase
                 </a>
             </div>
@@ -1044,11 +1072,21 @@
                     <a class="btn"
                        href="https://github.com/aboulelashehata/feedbase/releases/download/v1.0/FeedBase_Setup.exe"
                        target="_blank"
-                       onclick="gtag('event','trial_download_click',{'event_category':'engagement','event_label':'Start Free Trial - Bottom'});">
+                       onclick="gtag('event','trial_download_click',{
+                           event_category:'engagement',
+                           event_label:'Start Free Trial - Bottom',
+                           file_name:'FeedBase_Setup.exe',
+                           version:'v1.0'
+                       });">
                         Start Free Trial
                     </a>
 
-                    <a class="btn-secondary" href="#pricing">
+                    <a class="btn-secondary"
+                       href="#pricing"
+                       onclick="gtag('event','go_to_pricing_click',{
+                           event_category:'navigation',
+                           event_label:'Buy License - Bottom'
+                       });">
                         Buy License
                     </a>
                 </div>
@@ -1062,6 +1100,69 @@
         <p>FeedBase © 2026</p>
         <p>Developed by Eng. Aboulela</p>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const trackedSections = [
+                { id: "features", eventName: "features_section_view" },
+                { id: "pricing", eventName: "pricing_section_view" },
+                { id: "video", eventName: "video_section_view" },
+                { id: "download", eventName: "download_section_view" }
+            ];
+
+            const sentSections = new Set();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        const section = trackedSections.find(x => x.id === sectionId);
+
+                        if (section && !sentSections.has(sectionId)) {
+                            gtag('event', section.eventName, {
+                                event_category: 'engagement',
+                                event_label: sectionId
+                            });
+                            sentSections.add(sectionId);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.45
+            });
+
+            trackedSections.forEach((section) => {
+                const el = document.getElementById(section.id);
+                if (el) observer.observe(el);
+            });
+
+            setTimeout(function () {
+                gtag('event', 'engaged_30_seconds', {
+                    event_category: 'engagement',
+                    event_label: 'User stayed 30 seconds'
+                });
+            }, 30000);
+
+            let scroll75Sent = false;
+
+            window.addEventListener('scroll', function () {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+                if (docHeight > 0) {
+                    const percent = (scrollTop / docHeight) * 100;
+
+                    if (percent >= 75 && !scroll75Sent) {
+                        gtag('event', 'scroll_75', {
+                            event_category: 'engagement',
+                            event_label: 'Scrolled 75 percent'
+                        });
+                        scroll75Sent = true;
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
