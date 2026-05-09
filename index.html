@@ -560,6 +560,37 @@
             font-size: 21px;
         }
 
+        .blog-light-section {
+            background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+            color: #0f172a;
+            padding-top: 90px;
+            padding-bottom: 90px;
+        }
+
+        .blog-light-section h2 {
+            color: #0f172a;
+            font-size: 56px;
+        }
+
+        .blog-light-section .lead {
+            color: #475569;
+            font-size: 22px;
+        }
+
+        .blog-light-card {
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 26px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(15,23,42,0.12);
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        #soro-blog {
+            padding-top: 20px;
+        }
+
         .footer {
             text-align: center;
             padding: 26px 20px 40px;
@@ -570,13 +601,16 @@
         .footer p {
             margin: 8px 0;
         }
+
         .footer-link {
             color: #cbd5e1;
             text-decoration: none;
         }
-            .footer-link:hover {
-             color: white;
+
+        .footer-link:hover {
+            color: white;
         }
+
         @media (max-width: 900px) {
             .hero h1 {
                 font-size: 50px;
@@ -598,6 +632,10 @@
             .section h2,
             .cta-section h2 {
                 font-size: 36px;
+            }
+
+            .blog-light-section h2 {
+                font-size: 42px;
             }
 
             .plan-price {
@@ -642,6 +680,20 @@
                 font-size: 17px;
             }
 
+            .blog-light-section {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+            .blog-light-section .lead {
+                font-size: 18px;
+            }
+
+            .blog-light-card {
+                padding: 20px;
+                border-radius: 18px;
+            }
+
             .demo-text h3 {
                 font-size: 24px;
             }
@@ -657,20 +709,6 @@
                 height: 260px;
             }
         }
-        .blog-light-section {
-    background: #f8fafc;
-    color: #0f172a;
-}
-
-.blog-light-section h2 {
-    color: #0f172a;
-}
-
-.blog-light-section .lead {
-    color: #475569;
-}
-
-
     </style>
 </head>
 
@@ -686,6 +724,7 @@
                 <a href="#workflow">Workflow</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#video">Demo</a>
+                <a href="#blog">Blog</a>
                 <a href="feed-formulation-software.html" class="footer-link">Feed Formulation Guide</a>
                 <a href="#download" class="nav-btn">Start Free Trial</a>
             </div>
@@ -732,10 +771,12 @@
                     <h3>Fast</h3>
                     <p>Build and optimize feed formulas in a practical workflow.</p>
                 </div>
+
                 <div class="stat-card">
                     <h3>Accurate</h3>
                     <p>Compare actual nutrient values against target standards instantly.</p>
                 </div>
+
                 <div class="stat-card">
                     <h3>Practical</h3>
                     <p>Save, compare, and restore old solutions when needed.</p>
@@ -957,7 +998,6 @@
             </p>
 
             <div class="pricing-grid">
-
                 <div class="plan-card">
                     <h3>Monthly Plan</h3>
                     <div class="plan-price">$19 <span>/ month</span></div>
@@ -1012,7 +1052,6 @@
                         Buy Yearly
                     </a>
                 </div>
-
             </div>
 
             <p class="pricing-note">Secure payment available through PayPal, debit card, or credit card.</p>
@@ -1117,28 +1156,30 @@
         </div>
     </div>
 
-    </div> <!-- نهاية آخر section -->
-    
-<!-- Blog Section -->
-<div class="section blog-light-section" id="blog">
-    <div class="container">
-        <h2>Latest Articles</h2>
-        <p class="lead">
-            Learn more about feed formulation, nutrition strategies, and cost optimization.
-        </p>
+    <!-- Blog Section -->
+    <div class="section blog-light-section" id="blog">
+        <div class="container">
+            <h2>Latest Articles</h2>
+            <p class="lead">
+                Learn more about feed formulation, nutrition strategies, and cost optimization.
+            </p>
 
-        <div class="blog-light-card">
-            <div id="soro-blog"></div>
+            <div class="blog-light-card">
+                <div id="soro-blog"></div>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://app.trysoro.com/api/embed/089e61d5-463f-489b-af44-2fc101c3a23f" defer></script>
+    <script src="https://app.trysoro.com/api/embed/089e61d5-463f-489b-af44-2fc101c3a23f" defer></script>
 
-<div class="footer">
+    <div class="footer">
         <p>FeedBase © 2026</p>
         <p>Developed by Eng. Aboulela</p>
-        <p><a href="feed-formulation-software.html" style="color:#cbd5e1; text-decoration:none;">Feed Formulation Guide</a></p>
+        <p>
+            <a href="feed-formulation-software.html" style="color:#cbd5e1; text-decoration:none;">
+                Feed Formulation Guide
+            </a>
+        </p>
     </div>
 
     <script>
@@ -1147,7 +1188,8 @@
                 { id: "features", eventName: "features_section_view" },
                 { id: "pricing", eventName: "pricing_section_view" },
                 { id: "video", eventName: "video_section_view" },
-                { id: "download", eventName: "download_section_view" }
+                { id: "download", eventName: "download_section_view" },
+                { id: "blog", eventName: "blog_section_view" }
             ];
 
             const sentSections = new Set();
