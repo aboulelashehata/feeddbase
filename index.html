@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FeedBase</title>
 
+    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
     <style>
         * {
             box-sizing: border-box;
@@ -590,6 +592,92 @@
 #soro-blog {
     padding-top: 20px;
 }
+
+        .updates-section {
+            background: rgba(255,255,255,0.015);
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .updates-card {
+            max-width: 640px;
+            margin: 36px auto 0;
+            background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(35,50,74,0.95));
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .updates-form {
+            margin: 0;
+        }
+
+        .updates-input {
+            width: 100%;
+            padding: 17px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: #0f172a;
+            color: white;
+            font-size: 17px;
+            outline: none;
+        }
+
+        .updates-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .updates-input:focus {
+            border-color: rgba(34,197,94,0.7);
+            box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+        }
+
+        .updates-button {
+            width: 100%;
+            margin-top: 16px;
+            padding: 17px 22px;
+            background: var(--accent);
+            color: #08111f;
+            border: 0;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(34,197,94,0.28);
+            transition: 0.2s ease;
+        }
+
+        .updates-button:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        .updates-note {
+            margin-top: 14px;
+            color: var(--soft);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .sib-form {
+            padding: 0 !important;
+        }
+
+        .sib-form-container,
+        #sib-container {
+            background: transparent !important;
+            border: 0 !important;
+            padding: 0 !important;
+            max-width: none !important;
+        }
+
+        .sib-form-message-panel {
+            max-width: 640px !important;
+            margin: 0 auto 18px !important;
+            border-radius: 12px !important;
+        }
+
         .footer {
             text-align: center;
             padding: 26px 20px 40px;
@@ -723,6 +811,7 @@
                 <a href="#workflow">Workflow</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#video">Demo</a>
+                <a href="#updates">Updates</a>
                 <a href="#blog">Blog</a>
                 <a href="feed-formulation-software.html" class="footer-link">Feed Formulation Guide</a>
                 <a href="#download" class="nav-btn">Start Free Trial</a>
@@ -1136,6 +1225,71 @@
         </div>
     </div>
 
+
+    <!-- Updates / Email Signup Section -->
+    <div class="section updates-section" id="updates">
+        <div class="container">
+            <h2>Stay Updated with FeedBase</h2>
+            <p class="lead">
+                Get FeedBase updates, new releases, feature announcements,
+                and download information directly by email.
+            </p>
+
+            <div id="sib-form-container" class="sib-form-container">
+                <div id="error-message" class="sib-form-message-panel" style="font-family:Arial, sans-serif; font-size:16px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949;">
+                    <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                        <span class="sib-form-message-panel__inner-text">
+                            Your subscription could not be saved. Please try again.
+                        </span>
+                    </div>
+                </div>
+
+                <div id="success-message" class="sib-form-message-panel" style="font-family:Arial, sans-serif; font-size:16px; text-align:left; color:#085229; background-color:#e7faf0; border-color:#13ce66;">
+                    <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                        <span class="sib-form-message-panel__inner-text">
+                            Your subscription has been successful.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="updates-card">
+                    <form id="sib-form"
+                          class="updates-form"
+                          method="POST"
+                          action="https://6e7d230e.sibforms.com/serve/MUIFACL_py8XH-vQoLGzEi2LdWPYAJSfFSPxgsqisRqVvJcap8njNiGNFeZtRk5Y_PxUfEKCzbNOn3xr5f1B35BjadqEk3bOK4Cofp4Ngho_PaOKgzQY5fkAT7dkouSATVeRgtxF_e5xQNMSzunAljaeuAuigDL0Th6KhbSP_ggyKLAKad7qgHUGde6bF1Eil37XESZHyczW8vK3HA=="
+                          data-type="subscription">
+
+                        <input class="updates-input"
+                               type="email"
+                               id="EMAIL"
+                               name="EMAIL"
+                               autocomplete="email"
+                               placeholder="Enter your email"
+                               data-required="true"
+                               required>
+
+                        <button class="updates-button"
+                                form="sib-form"
+                                type="submit"
+                                onclick="gtag('event','email_signup_click',{
+                                    event_category:'engagement',
+                                    event_label:'Join FeedBase Updates'
+                                });">
+                            Join FeedBase Updates
+                        </button>
+
+                        <p class="updates-note">
+                            No spam. Only FeedBase updates, releases, and important product information.
+                        </p>
+
+                        <input type="text" name="email_address_check" value="" class="input--hidden">
+                        <input type="hidden" name="locale" value="en">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Blog Section -->
     <div class="section blog-light-section" id="blog">
         <div class="container">
@@ -1162,6 +1316,31 @@
         </p>
     </div>
 
+
+    <script>
+        window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+        window.LOCALE = 'en';
+        window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+        window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank.";
+        window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+        window.INVALID_NUMBER = "The information provided is invalid. Please review the field format and try again.";
+        window.INVALID_DATE = "Please enter a valid date";
+        window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+
+        window.translation = {
+            common: {
+                selectedList: '{quantity} list selected',
+                selectedLists: '{quantity} lists selected',
+                selectedOption: '{quantity} selected',
+                selectedOptions: '{quantity} selected'
+            }
+        };
+
+        var AUTOHIDE = Boolean(1);
+    </script>
+
+    <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const trackedSections = [
@@ -1169,6 +1348,7 @@
                 { id: "pricing", eventName: "pricing_section_view" },
                 { id: "video", eventName: "video_section_view" },
                 { id: "download", eventName: "download_section_view" },
+                { id: "updates", eventName: "updates_section_view" },
                 { id: "blog", eventName: "blog_section_view" }
             ];
 
